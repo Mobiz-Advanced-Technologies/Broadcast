@@ -55,7 +55,7 @@ function recordCanvas(canvas) {
             '-i', 'dump.webm',
             '-c:v', 'copy', '-c:a', 'copy', '-strict', 'experimental',
             '-f', 'mp4',
-            'output.mp4'
+            `${formattedToday}.mp4`
           ],
         });
 
