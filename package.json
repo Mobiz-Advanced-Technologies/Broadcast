@@ -20,11 +20,13 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@electron/remote": "^2.0.10",
-    "electron": "^25.4.0",
-    "electron-builder": "^24.6.3",
     "electron-updater": "^6.1.1",
     "ffmpeg.js": "^4.2.9003",
     "jquery": "^3.7.0"
+  },
+  "devDependencies": {
+    "electron": "^25.4.0",
+    "electron-builder": "^24.6.3",
   },
   "build": {
     "appId": "com.cubic.broadcast",
