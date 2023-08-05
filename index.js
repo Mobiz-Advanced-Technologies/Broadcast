@@ -8,7 +8,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1000,
     height: 600,
-    icon: "icon.png",
+    icon: "build/icon.png",
     autoHideMenuBar: true,
     backgroundColor: '#1d1d1d',
     webPreferences: {
