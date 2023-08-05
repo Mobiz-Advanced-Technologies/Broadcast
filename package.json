@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "distCI": "electron-builder --win --linux --mac"
   },
   "repository": "https://github.com/Mobiz-Advanced-Technologies/Broadcast",
   "publish": {
@@ -20,8 +21,50 @@
   "dependencies": {
     "@electron/remote": "^2.0.10",
     "electron": "^25.4.0",
+    "electron-builder": "^24.6.3",
     "electron-updater": "^6.1.1",
     "ffmpeg.js": "^4.2.9003",
     "jquery": "^3.7.0"
-  }
+  },
+  "build": {
+    "appId": "com.cubic.broadcast",
+    "productName": "Cubic Broadcast",
+    "win": {
+      "verifyUpdateCodeSignature": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "publisherName": "Mobiz-Advanced-Technologies"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage",
+        "snap",
+        "rpm"
+      ],
+      "maintainer": "Mobiz-Advanced-Technologies",
+      "category": "Utility"
+    },
+    "mac": {
+      "target": [
+        "zip",
+        "tar.gz"
+      ],
+      "category": "public.app-category.utilities"
+    }
+  },
 }
