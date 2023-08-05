@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    color: white;
+    user-select: none;
+    font-smooth: always;
+}
+
+canvas {
+    border: rgb(133, 133, 133) solid 1px;
+    border-radius: 2px;
+}
+
+html,
+body {
+    overflow: hidden;
+    background: ghostwhite;
+}
+
+#theater {
+    text-align: center;
+    background: #2d2d2d;
+    padding: 5px;
+    height: calc(70vh - 40.5px);
+    box-sizing: border-box;
+    color: white;
+}
+
+#theater button {
+    padding: 5px;
+}
+
+#controls {
+    padding: 5px;
+    height: calc(30vh - 3px);
+    box-sizing: border-box;
+    background: #1d1d1d;
+}
+
+#elementlist {
+    padding: 5px;
+    height: 100%;
+    width: 20%;
+    outline: none;
+    background: none;
+    color: white;
+    overflow: auto;
+}
+
+#elementlist option {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#presetlist {
+    padding: 5px;
+    height: 100%;
+    width: 20%;
+    outline: none;
+    background: none;
+    color: white;
+    overflow: auto;
+}
+
+#presetlist option {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+form {
+    width: calc(60% - 10px);
+    float: right;
+    padding: 15px;
+    height: 100%;
+    overflow: auto;
+    border-color: rgb(133, 133, 133);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+#theater button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    margin: 5px;
+    margin-top: 0;
+}
+
+#theater button:hover i {
+    color: lightgray;
+}
+
+.ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2d2d2d;
+}
+
+.li {
+    float: left;
+}
+
+.li a,
+.dropbtn {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    margin: 2.5px;
+    border-radius: 5px;
+}
+
+.li a:hover,
+.dropdown:hover .dropbtn {
+    background-color: #1d1d1d;
+}
+
+.li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1d1d1d;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-left: 2.5px;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #3d3d3d;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+form input, form button, form select {
+    padding: 5px;
+    color: black;
+    margin: 5px;
+    display: block;
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+#broadcastintro, #whattorecord, #about {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    text-align: center;
+    place-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background: #1d1d1dab;
+    backdrop-filter: blur(10px);
+}
+
+#broadcastintro div, #whattorecord div, #about div {
+    padding: 20px;
+    background: #2d2d2d;
+    border-radius: 5px;
+}
+
+#broadcastintro button, #whattorecord button, #about button {
+    background: #3d3d3d;
+    padding: 15px;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#broadcastintro button:hover, #whattorecord button:hover, #about button:hover {
+    background: #4d4d4d;
+}
+
+#broadcastintro i, #whattorecord i, #about i {
+    font-size: 45px;
+}
+
+#medialist {
+    background: #1d1d1d !important;
+}
+
+#medialist button {
+    margin: 20px;
+}
+
+#medialist p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+    margin-top: 15px;
+}

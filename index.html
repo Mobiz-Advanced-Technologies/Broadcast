@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="icon.png">
+
+    <title>Cubic Broadcast</title>
+
+    <script type="text/javascript" src="render.js" defer></script>
+    <script type="text/javascript" src="uimanagement.js"></script>
+    <script type="text/javascript" src="livestream.js"></script>
+
+    <script type="text/javascript" src="deps/simple2canvas.js"></script>
+    <script type="text/javascript" src="deps/underscore.js"></script>
+    <script type="text/javascript" src="deps/opt/jsv.js"></script>
+    <script type="text/javascript" src="lib/jsonform.js"></script>
+    <script type="text/javascript" src="deps/fa.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="broadcastintro">
+        <div style="margin: 20px;">
+            <h1>Welcome to Broadcast!</h1>
+            <br>
+            <button onclick="startRecording(); this.parentNode.parentNode.style.display = 'none'" style="width: 50%;">
+                <i class="fa fa-desktop"></i>
+                <br><br>
+                Capture your Screen
+            </button>
+
+            <input type="file" accept="video/*" onchange="custom_video(event)" id="mediainput" style="display: none;">
+            <button onclick="document.getElementById('mediainput').click(); this.parentNode.parentNode.style.display = 'none'" style="width: 48%;">
+                <i class="fa fa-file-video"></i>
+                <br><br>
+                Open a Video
+            </button>
+            <br><br>
+            <button style="width: 100%;" onclick="this.parentNode.parentNode.style.display = 'none'">Close</button>
+        </div>
+    </div>
+    <div id="whattorecord" style="display: none;">
+        <div style="margin: 20px;">
+            <h1>Choose what to capture</h1>
+            <br>
+            <div id="medialist" style="padding: 0;"></div>
+            <br>
+            <button style="width: 100%;" onclick="this.parentNode.parentNode.style.display = 'none'">Cancel</button>
+        </div>
+    </div>
+    <div id="about" style="display: none;">
+        <div style="margin: 20px;">
+            <img src="icon.png" style="width: 250px;">
+            <h1>Cubic Broadcast</h1>
+            <br>
+            App Version: <span id="appver"></span><br>
+            Electron Version: <span id="electronver"></span><br><br>
+            Made with ♥ from Mobiz-Advanced-Technologies!
+            <div id="medialist" style="padding: 0;"></div>
+            <br>
+            <button style="width: 100%;" onclick="this.parentNode.parentNode.style.display = 'none'">Close</button>
+        </div>
+    </div>
+    <ul class="ul">
+        <li class="dropdown li">
+            <a href="javascript:void(0)" class="dropbtn">File</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="saveOverlay()"><i class="fa fa-save"></i> Save Overlay</a>
+                <a href="#" onclick="exportOverlay()"><i class="fa fa-download"></i> Export Overlay</a>
+                <input type="file" accept=".json" id="file-input" onchange="loadOverlay()" style="display: none;" />
+                <a href="#" onclick="document.getElementById('file-input').click()"><i class="fa fa-upload"></i> Import
+                    Overlay</a>
+                <hr>
+                <a href="#" onclick="window.close()"><i class="fa fa-right-from-bracket"></i> Exit</a>
+            </div>
+        </li>
+        <li class="dropdown li">
+            <a href="javascript:void(0)" class="dropbtn">Insert</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="createTextForm()"><i class="fa fa-font"></i> Text Overlay</a>
+                <a href="#" onclick="createRectForm()"><i class="fa fa-stop"></i> Rectangle Overlay</a>
+                <a href="#" onclick="createImageForm()"><i class="fa fa-image"></i> Image Overlay</a>
+            </div>
+        </li>
+        <li class="dropdown li">
+            <a href="javascript:void(0)" class="dropbtn">Source</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="startRecording()"><i class="fa fa-desktop"></i> Capture your Screen</a>
+                <a href="#" onclick="document.getElementById('mediainput').click()"><i class="fa fa-file-video"></i> Open a Video</a>
+                <hr>
+                <a href="#" onclick="startLiveStream()"><i class="fa-brands fa-chromecast"></i> Stream In External Window</a>
+            </div>
+        </li>
+
+        <li class="dropdown li">
+            <a href="javascript:void(0)" class="dropbtn">Help</a>
+            <div class="dropdown-content">
+                <a href="https://github.com/lizheming/Simple2Canvas#simple2canvas" target="_blank"><i class="fa fa-book"></i> Overlay JSON Documentation</a>
+                <a href="#" onclick="document.getElementById('about').style.display = 'flex'"><i class="fa fa-location-arrow"></i> About</a>
+            </div>
+        </li>
+
+        <li class="li" style="float: right;">
+            <a href="#" onclick="recordCanvas(canvas)" id="startRecordBtn" style="background: #1d1d1d;">Start Recording</a>
+            <a href="#" onclick="stopRecording()" id="stopRecordBtn" style="display: none; background: darkred;">Stop Recording</a>
+            <a href="#" id="exportBtn" style="display: none; background: darkred;">Exporting...</a>
+            <a href="#" id="FPSMark" style="background: #1d1d1d;">FPS: 0</a>
+            <a href="#" id="CPUMark" style="background: #1d1d1d;">CPU: 0</a>
+        </li>
+    </ul>
+    <div id="theater">
+        <canvas id="canvas" style="background: black; height: calc(100% - 35px);"></canvas>
+        <br>
+        <button onclick="video.play()" title="Play">
+            <i class="fa fa-play"></i>
+        </button>
+        <button onclick="video.pause()" title="Pause">
+            <i class="fa fa-pause"></i>
+        </button>
+        <button onclick="video.pause(); video.currentTime = 0;" title="Stop">
+            <i class="fa fa-stop"></i>
+        </button>
+    </div>
+    <div id="controls">
+        <select id="presetlist" multiple></select>
+        <select id="elementlist" multiple>
+
+        </select>
+        <form id="form"></form>
+        <div id="res" class="alert"></div>
+    </div>
+</body>
+</html>
