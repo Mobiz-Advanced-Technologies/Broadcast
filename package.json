@@ -31,7 +31,10 @@
     "productName": "Cubic Broadcast",
     "win": {
       "verifyUpdateCodeSignature": false,
-      "target": ["nsis","portable"],
+      "target": [
+        "nsis",
+        "portable"
+      ],
       "publisherName": "Mobiz-Advanced-Technologies"
     },
     "linux": {
@@ -51,5 +54,5 @@
       ],
       "category": "public.app-category.utilities"
     }
-  },
+  }
 }
