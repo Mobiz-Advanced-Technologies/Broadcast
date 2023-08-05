@@ -15,7 +15,7 @@ canvas {
 html,
 body {
     overflow: hidden;
-    background: ghostwhite;
+    background: #1d1d1d;
 }
 
 #theater {

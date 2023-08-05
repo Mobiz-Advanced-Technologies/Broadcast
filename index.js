@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer, remote, electron } = require("electron");
 const fs = require('fs');
 const path = require('path');
+const { autoUpdater, AppUpdater } = require("electron-updater");
 var win
 
 function createWindow() {
@@ -27,7 +28,22 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow()
+
+  autoUpdater.checkForUpdates();
+  console.log(`Checking for updates. Current version ${app.getVersion()}`);
 })
+
+autoUpdater.on("update-available", (info) => {
+  console.log(`Update available. Current version ${app.getVersion()}`);
+});
+
+autoUpdater.on("update-not-available", (info) => {
+  console.log(`No update available. Current version ${app.getVersion()}`);
+});
+
+autoUpdater.on("update-downloaded", (info) => {
+  console.log(`Update downloaded. Current version ${app.getVersion()}`);
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
