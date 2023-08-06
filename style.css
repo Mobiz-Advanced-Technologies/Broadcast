@@ -8,7 +8,7 @@
 }
 
 canvas {
-    border: rgb(133, 133, 133) solid 1px;
+    border: #3d3d3d solid 1px;
     border-radius: 2px;
 }
 
@@ -46,6 +46,7 @@ body {
     background: none;
     color: white;
     overflow: auto;
+    border: #3d3d3d solid 1px;
 }
 
 #elementlist option {
@@ -61,6 +62,7 @@ body {
     background: none;
     color: white;
     overflow: auto;
+    border: #3d3d3d solid 1px;
 }
 
 #presetlist option {
@@ -74,7 +76,7 @@ form {
     padding: 15px;
     height: 100%;
     overflow: auto;
-    border-color: rgb(133, 133, 133);
+    border-color: #3d3d3d;
     border-width: 1px;
     border-style: solid;
     border-radius: 2px;
@@ -116,11 +118,13 @@ form {
     text-decoration: none;
     margin: 2.5px;
     border-radius: 5px;
+    border: #00000000 solid 1px;
 }
 
 .li a:hover,
 .dropdown:hover .dropbtn {
     background-color: #1d1d1d;
+    border: #3d3d3d solid 1px;
 }
 
 .li.dropdown {
@@ -135,6 +139,7 @@ form {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
+    border: #3d3d3d solid 1px;
     margin-left: 2.5px;
 }
 
@@ -146,7 +151,7 @@ form {
 }
 
 .dropdown-content a:hover {
-    background-color: #3d3d3d;
+    background-color: #2d2d2d;
 }
 
 .dropdown:hover .dropdown-content {
@@ -155,14 +160,18 @@ form {
 
 form input, form button, form select {
     padding: 5px;
-    color: black;
     margin: 5px;
     display: block;
     width: calc(100% - 10px);
     box-sizing: border-box;
+    background: #2d2d2d;
+    border: #3d3d3d solid 1px;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
 }
 
-#broadcastintro, #whattorecord, #about {
+#broadcastintro, #whattorecord, #about, #settings {
     position: absolute;
     z-index: 1;
     display: flex;
@@ -175,13 +184,14 @@ form input, form button, form select {
     backdrop-filter: blur(10px);
 }
 
-#broadcastintro div, #whattorecord div, #about div {
+#broadcastintro div, #whattorecord div, #about div, #settings div {
     padding: 20px;
     background: #2d2d2d;
     border-radius: 5px;
+    border: #3d3d3d solid 1px;
 }
 
-#broadcastintro button, #whattorecord button, #about button {
+#broadcastintro button, #whattorecord button, #about button, #settings button, #settings select {
     background: #3d3d3d;
     padding: 15px;
     border: none;
@@ -189,11 +199,11 @@ form input, form button, form select {
     border-radius: 5px;
 }
 
-#broadcastintro button:hover, #whattorecord button:hover, #about button:hover {
+#broadcastintro button:hover, #whattorecord button:hover, #about button:hover, #settings button:hover, #settings select:hover {
     background: #4d4d4d;
 }
 
-#broadcastintro i, #whattorecord i, #about i {
+#broadcastintro i, #whattorecord i, #about i, #settings i {
     font-size: 45px;
 }
 
@@ -211,4 +221,9 @@ form input, form button, form select {
     text-overflow: ellipsis;
     width: 150px;
     margin-top: 15px;
+}
+
+hr {
+    border: none;
+    border-bottom: #3d3d3d solid 1px;
 }

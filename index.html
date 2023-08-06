@@ -59,8 +59,19 @@
             App Version: <span id="appver"></span><br>
             Electron Version: <span id="electronver"></span><br><br>
             Made with ♥ from Mobiz-Advanced-Technologies!
-            <div id="medialist" style="padding: 0;"></div>
-            <br>
+            <br><br>
+            <button style="width: 100%;" onclick="this.parentNode.parentNode.style.display = 'none'">Close</button>
+        </div>
+    </div>
+    <div id="settings" style="display: none;">
+        <div style="margin: 20px;">
+            <h1>Settings</h1><br>
+            <label>Export recording to:</label>
+            <select onchange="setExportMode(this.value)" id="exportMode">
+                <option value="mp4">mp4 (slower)</option>
+                <option value="webm">webm (fastest)</option>
+            </select>
+            <br><br>
             <button style="width: 100%;" onclick="this.parentNode.parentNode.style.display = 'none'">Close</button>
         </div>
     </div>
@@ -98,8 +109,10 @@
         <li class="dropdown li">
             <a href="javascript:void(0)" class="dropbtn">Help</a>
             <div class="dropdown-content">
-                <a href="https://github.com/lizheming/Simple2Canvas#simple2canvas" target="_blank"><i class="fa fa-book"></i> Overlay JSON Documentation</a>
+                <a onclick="shell.openExternal('https://github.com/lizheming/Simple2Canvas')"><i class="fa fa-book"></i> Overlay JSON Documentation</a>
                 <a href="#" onclick="document.getElementById('about').style.display = 'flex'"><i class="fa fa-location-arrow"></i> About</a>
+                <hr>
+                <a href="#" onclick="document.getElementById('settings').style.display = 'flex'"><i class="fa fa-gear"></i> Settings</a>
             </div>
         </li>
 

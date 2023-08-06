@@ -1,4 +1,4 @@
-const {app, desktopCapturer} = require('@electron/remote');
+const {app, desktopCapturer, shell} = require('@electron/remote');
 const ffmpeg = require("ffmpeg.js/ffmpeg-mp4.js");
 var os = require("os");
 
@@ -34,45 +34,56 @@ function recordCanvas(canvas) {
 
         const today = new Date();
         const yyyy = today.getFullYear();
-
         let mm = today.getMonth() + 1; // Months start at 0!
         let dd = today.getDate();
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;
 
-        const formattedToday = dd + '/' + mm + '/' + yyyy;
+        const formattedToday = dd + '-' + mm + '-' + yyyy;
 
-        const BlobReader = new FileReader();
-        BlobReader.readAsArrayBuffer(blob);
-        await new Promise((resolve) => (BlobReader.onload = resolve));
+        if (exportMode == 'mp4') {
+            const BlobReader = new FileReader();
+            BlobReader.readAsArrayBuffer(blob);
+            await new Promise((resolve) => (BlobReader.onload = resolve));
 
-        const HandlerData = new Uint8Array(BlobReader.result);
-        const HandlerUInt8ArrayData = new Uint8Array(HandlerData);
+            const HandlerData = new Uint8Array(BlobReader.result);
+            const HandlerUInt8ArrayData = new Uint8Array(HandlerData);
 
-        const result = ffmpeg({
-          MEMFS: [{name: `dump.webm`, data: HandlerUInt8ArrayData}],
-          arguments: [
-            '-i', 'dump.webm',
-            '-c:v', 'copy', '-c:a', 'copy', '-strict', 'experimental',
-            '-f', 'mp4',
-            `${formattedToday}.mp4`
-          ],
-        });
+            const result = ffmpeg({
+              MEMFS: [{name: `dump.webm`, data: HandlerUInt8ArrayData}],
+              arguments: [
+                '-i', 'dump.webm',
+                '-c:v', 'copy', '-c:a', 'copy', '-strict', 'experimental',
+                '-f', 'mp4',
+                `${formattedToday}.mp4`
+              ],
+            });
 
-        document.getElementById('startRecordBtn').style.display = "inline-block";
-        document.getElementById('exportBtn').style.display = "none";
-        
-        const out = result.MEMFS[0];
-        console.log(out)
+            document.getElementById('startRecordBtn').style.display = "inline-block";
+            document.getElementById('exportBtn').style.display = "none";
+            
+            const out = result.MEMFS[0];
+            console.log(out)
 
-        const url = URL.createObjectURL(new Blob([out.data], {
-            type: 'video/mp4'
-        }));
-        const link = document.createElement('a');
+            const url = URL.createObjectURL(new Blob([out.data], {
+                type: 'video/mp4'
+            }));
+            const link = document.createElement('a');
 
-        link.href = url;
-        link.download = out.name;
-        link.click();
+            link.href = url;
+            link.download = out.name;
+            link.click();
+        } else if (exportMode == 'webm') {
+            document.getElementById('startRecordBtn').style.display = "inline-block";
+            document.getElementById('exportBtn').style.display = "none";
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+
+            link.href = url;
+            link.download = formattedToday;
+            link.click();
+        }
 
         recordedChunks = [];
     };
@@ -96,8 +107,25 @@ if (!localStorage.getItem("overlays")) {
             {"text":"Cubic Broadcast","top":150,"left":277,"fontSize":110,"fontFamily":"arial","lineHeight":30,"textAlign":"left","fontWeight":30,"color":"#000000","type":"text"}
         ]
     ];
+
+    localStorage.setItem("overlays", JSON.stringify(overlaylist))
 } else {
     var overlaylist = JSON.parse(localStorage.getItem("overlays"));
+}
+
+//fetch saved export settings
+if (!localStorage.getItem("exportMode")) {
+    var exportMode = 'webm';
+    localStorage.setItem("exportMode", exportMode);
+    document.getElementById('exportMode').value = exportMode;
+} else {
+    var exportMode = localStorage.getItem("exportMode");
+    document.getElementById('exportMode').value = exportMode;
+}
+
+function setExportMode(mode) {
+    exportMode = mode;
+    localStorage.setItem("exportMode", exportMode)
 }
 
 //load saved overlays
