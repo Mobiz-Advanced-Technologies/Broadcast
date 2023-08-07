@@ -1,21 +1,25 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: Inter;
     color: white;
     user-select: none;
     font-smooth: always;
 }
 
+@font-face {
+    font-family: Inter;
+    src: url('inter.ttf');
+}
+
 canvas {
     border: #3d3d3d solid 1px;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 html,
 body {
     overflow: hidden;
-    background: #1d1d1d;
 }
 
 #theater {
@@ -33,7 +37,7 @@ body {
 
 #controls {
     padding: 5px;
-    height: calc(30vh - 3px);
+    height: calc(30vh - 7px);
     box-sizing: border-box;
     background: #1d1d1d;
 }
@@ -47,6 +51,7 @@ body {
     color: white;
     overflow: auto;
     border: #3d3d3d solid 1px;
+    border-radius: 5px;
 }
 
 #elementlist option {
@@ -63,6 +68,7 @@ body {
     color: white;
     overflow: auto;
     border: #3d3d3d solid 1px;
+    border-radius: 5px;
 }
 
 #presetlist option {
@@ -75,11 +81,10 @@ form {
     float: right;
     padding: 15px;
     height: 100%;
-    overflow: auto;
     border-color: #3d3d3d;
     border-width: 1px;
     border-style: solid;
-    border-radius: 2px;
+    border-radius: 5px;
     margin-left: 5px;
     box-sizing: border-box;
     overflow: auto;
@@ -91,7 +96,8 @@ form {
     font-size: 20px;
     padding: 5px;
     margin: 5px;
-    margin-top: 0;
+    margin-top: -2px;
+    margin-bottom: 0;
 }
 
 #theater button:hover i {
