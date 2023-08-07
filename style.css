@@ -233,3 +233,12 @@ hr {
     border: none;
     border-bottom: #3d3d3d solid 1px;
 }
+
+.halfBtn {
+    width: calc(49% - 6px);
+    display: inline-block;
+}
+
+label {
+    text-transform: capitalize;
+}

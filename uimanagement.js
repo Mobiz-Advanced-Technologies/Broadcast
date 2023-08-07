@@ -1,5 +1,23 @@
 window.$ = window.jQuery = require('jquery');
 
+function moveDown(array, index) {
+  if (index > 0 && index < array.length) {
+    [array[index - 1], array[index]] = [array[index], array[index - 1]];
+    document.getElementById("form").innerHTML = "";
+    refreshUIElements()
+    localStorage.setItem("overlays", JSON.stringify(overlaylist))
+  }
+}
+
+function moveUp(array, index) {
+  if (index >= 0 && index < array.length - 1) {
+    [array[index], array[index + 1]] = [array[index + 1], array[index]];
+    document.getElementById("form").innerHTML = "";
+    refreshUIElements()
+    localStorage.setItem("overlays", JSON.stringify(overlaylist))
+  }
+}
+
 function refreshUIElements() {
     var elementlist = document.getElementById("elementlist");
     elementlist.innerHTML = "";
@@ -13,6 +31,10 @@ function refreshUIElements() {
         option.onclick = function () {
             document.getElementById("form").innerHTML = ""
 
+            let dellabel = document.createElement('label');
+            dellabel.innerText = "actions" + ":";
+            document.getElementById("form").appendChild(dellabel)
+
             delbtn = document.createElement('button');
             delbtn.innerText = 'Delete Element';
             delbtn.onclick = function () {
@@ -22,6 +44,20 @@ function refreshUIElements() {
                 localStorage.setItem("overlays", JSON.stringify(overlaylist))
             }
             document.getElementById("form").appendChild(delbtn)
+
+            let layerlabel = document.createElement('label');
+            layerlabel.innerText = "layer" + ":";
+            document.getElementById("form").appendChild(layerlabel)
+
+            upbtn = document.createElement('button');
+            upbtn.innerText = 'Move Up';
+            upbtn.onclick = function() {moveUp(options.elements, index)}
+            document.getElementById("form").appendChild(upbtn)
+
+            downbtn = document.createElement('button');
+            downbtn.innerText = 'Move Down';
+            downbtn.onclick = function() {moveDown(options.elements, index)}
+            document.getElementById("form").appendChild(downbtn)
 
             Object.entries(element).forEach(([key, value]) => {
                 let input = document.createElement('input');

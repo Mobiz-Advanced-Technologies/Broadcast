@@ -133,6 +133,18 @@ function loadSavedOverlays() {
     var savedelementlist = document.getElementById("presetlist");
     savedelementlist.innerHTML = "";
 
+    let blankOption = document.createElement("option");
+    blankOption.innerText = "None";
+    blankOption.style.color = "#ffffff75"
+
+    savedelementlist.prepend(blankOption)
+
+    blankOption.onclick = function () {
+        options.elements = [];
+        document.getElementById("form").innerHTML = "";
+        refreshUIElements()
+    }
+
     overlaylist.forEach(element => {
         let presetlist = document.getElementById("presetlist");
         let option = document.createElement("option");
@@ -142,6 +154,7 @@ function loadSavedOverlays() {
 
         option.onclick = function () {
             options.elements = element;
+            document.getElementById("form").innerHTML = "";
             refreshUIElements()
         }
     });
