@@ -22,3 +22,8 @@ If you want to build for your platform, you can run:
 ```
 npm run dist
 ```
+
+## Certified By
+![image](https://www.softpedia.com/_img/softpedia_100_clean.png?2023_1)
+
+[Download Cubic Broadcast on Softpedia](https://www.softpedia.com/get/Multimedia/Video/Video-Recording/Cubic-Broadcast.shtml)
