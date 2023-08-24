@@ -7,13 +7,21 @@
     font-smooth: always;
 }
 
+:root {
+  --background: #1d1d1d;
+  --transparentbackground: #1d1d1dab;
+  --btnbackground: #2d2d2d;
+  --bordercolor: #3d3d3d;
+  --hovercolor: #4d4d4d;
+}
+
 @font-face {
     font-family: Inter;
     src: url('inter.ttf');
 }
 
 canvas {
-    border: #3d3d3d solid 1px;
+    border: var(--bordercolor) solid 1px;
     border-radius: 5px;
 }
 
@@ -24,7 +32,7 @@ body {
 
 #theater {
     text-align: center;
-    background: #2d2d2d;
+    background: var(--btnbackground);
     padding: 5px;
     height: calc(70vh - 40.5px);
     box-sizing: border-box;
@@ -39,7 +47,7 @@ body {
     padding: 5px;
     height: calc(30vh - 7px);
     box-sizing: border-box;
-    background: #1d1d1d;
+    background: var(--background);
 }
 
 #elementlist {
@@ -50,7 +58,7 @@ body {
     background: none;
     color: white;
     overflow: auto;
-    border: #3d3d3d solid 1px;
+    border: var(--bordercolor) solid 1px;
     border-radius: 5px;
 }
 
@@ -67,7 +75,7 @@ body {
     background: none;
     color: white;
     overflow: auto;
-    border: #3d3d3d solid 1px;
+    border: var(--bordercolor) solid 1px;
     border-radius: 5px;
 }
 
@@ -81,7 +89,7 @@ form {
     float: right;
     padding: 15px;
     height: 100%;
-    border-color: #3d3d3d;
+    border-color: var(--bordercolor);
     border-width: 1px;
     border-style: solid;
     border-radius: 5px;
@@ -109,7 +117,7 @@ form {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #2d2d2d;
+    background-color: var(--btnbackground);
 }
 
 .li {
@@ -129,8 +137,8 @@ form {
 
 .li a:hover,
 .dropdown:hover .dropbtn {
-    background-color: #1d1d1d;
-    border: #3d3d3d solid 1px;
+    background-color: var(--background);
+    border: var(--bordercolor) solid 1px;
 }
 
 .li.dropdown {
@@ -140,12 +148,12 @@ form {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #1d1d1d;
+    background-color: var(--background);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
-    border: #3d3d3d solid 1px;
+    border: var(--bordercolor) solid 1px;
     margin-left: 2.5px;
 }
 
@@ -157,7 +165,7 @@ form {
 }
 
 .dropdown-content a:hover {
-    background-color: #2d2d2d;
+    background-color: var(--btnbackground);
 }
 
 .dropdown:hover .dropdown-content {
@@ -170,8 +178,8 @@ form input, form button, form select {
     display: block;
     width: calc(100% - 10px);
     box-sizing: border-box;
-    background: #2d2d2d;
-    border: #3d3d3d solid 1px;
+    background: var(--btnbackground);
+    border: var(--bordercolor) solid 1px;
     border-radius: 5px;
     padding: 15px;
     text-align: left;
@@ -186,19 +194,19 @@ form input, form button, form select {
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background: #1d1d1dab;
+    background: var(--transparentbackground);
     backdrop-filter: blur(10px);
 }
 
 #broadcastintro div, #whattorecord div, #about div, #settings div {
     padding: 20px;
-    background: #2d2d2d;
+    background: var(--btnbackground);
     border-radius: 5px;
-    border: #3d3d3d solid 1px;
+    border: var(--bordercolor) solid 1px;
 }
 
 #broadcastintro button, #whattorecord button, #about button, #settings button, #settings select {
-    background: #3d3d3d;
+    background: var(--bordercolor);
     padding: 15px;
     border: none;
     font-weight: bold;
@@ -206,7 +214,7 @@ form input, form button, form select {
 }
 
 #broadcastintro button:hover, #whattorecord button:hover, #about button:hover, #settings button:hover, #settings select:hover {
-    background: #4d4d4d;
+    background: var(--hovercolor);
 }
 
 #broadcastintro i, #whattorecord i, #about i, #settings i {
@@ -214,7 +222,7 @@ form input, form button, form select {
 }
 
 #medialist {
-    background: #1d1d1d !important;
+    background: var(--background) !important;
 }
 
 #medialist button {
@@ -231,7 +239,7 @@ form input, form button, form select {
 
 hr {
     border: none;
-    border-bottom: #3d3d3d solid 1px;
+    border-bottom: var(--bordercolor) solid 1px;
 }
 
 .halfBtn {
@@ -241,4 +249,23 @@ hr {
 
 label {
     text-transform: capitalize;
+}
+
+#startRecordBtn, #stopRecordBtn, #exportBtn, #FPSMark, #CPUMark {
+    background-color: var(--background);
+    border: var(--bordercolor) solid 1px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+      --background: #eeeeee;
+      --transparentbackground: #eeeeeeab;
+      --btnbackground: #d6d6d6;
+      --bordercolor: #c9c9c9;
+      --hovercolor: #b4b4b4;
+    }
+
+    * {
+        color: black;
+    }
 }

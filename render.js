@@ -135,7 +135,6 @@ function loadSavedOverlays() {
 
     let blankOption = document.createElement("option");
     blankOption.innerText = "None";
-    blankOption.style.color = "#ffffff75"
 
     savedelementlist.prepend(blankOption)
 
